@@ -1,0 +1,14 @@
+version: "3"
+services:
+  jupyter_notebook_cuda:
+    restart: always
+    image: wolodin/jupyter_notebook_cuda:latest
+    volumes:
+      - ./lessons:/home/playground/lessons
+    ports:
+      - "8765:8765"
+    networks:
+      - webnet
+
+networks:
+  webnet:
