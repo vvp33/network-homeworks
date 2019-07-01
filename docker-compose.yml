@@ -1,7 +1,8 @@
 version: "3"
 services:
   jupyter_notebook_cuda:
-    restart: always
+    container_name: "jupyter-notebook-cuda"
+    restart: unless-stopped
     image: wolodin/jupyter_notebook_cuda:latest
     volumes:
       - ./lessons:/home/playground/lessons
