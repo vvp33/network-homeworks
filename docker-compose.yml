@@ -1,19 +1,12 @@
-version: "3.5"
+version: "3.6"
 services:
   jupyter_notebook_cuda:
     container_name: "jupyter-notebook-cuda"
     restart: unless-stopped
     image: wolodin/jupyter_notebook_cuda:latest
     volumes:
-      - ./lessons:/home/data-mapping/lessons:rw
-      - ./tools:/tools:ro
-    entrypoint: '/tools/entrypoint.sh'
-    environment:
-      VOLUME: '/home/data-mapping'
-      DOCKER_USER: 'data-mapping'
-      DOCKER_GROUP: 'data-mapping'
-      HOST_USER_ID: 1000
-      HOST_GROUP_ID: 1000
+      - ./lessons:/home/web/lessons:rw,cached
+    user: ${HOST_USER_ID:-1000}:${HOST_GROUP_ID:-1000}
     ports:
       - "127.0.0.1:8765:8765"
     networks:
